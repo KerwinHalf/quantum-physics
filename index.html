@@ -3,164 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高等量子力学 - 题库总览</title>
-    <!-- MathJax 配置 -->
+    <title>高等量子力学 - 课程总览</title>
     <script>
     MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        /* 全局设置 */
         body { font-family: "Segoe UI", Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f4f6f9; margin: 0; }
-        
-        /* 顶部标题栏 */
-        .header { background-color: #2c3e50; color: white; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header { background-color: #2c3e50; color: white; padding: 20px; text-align: center; }
         .header h1 { margin: 0; font-size: 1.8em; }
-        .header p { margin: 5px 0 0; font-size: 0.9em; opacity: 0.8; }
-
-        /* 页面布局容器：左目录 + 右内容 */
-        .layout { display: flex; max-width: 1200px; margin: 20px auto; gap: 30px; padding: 0 20px; }
-
-        /* 左侧目录栏 (固定不动) */
-        .sidebar { 
-            width: 280px; 
-            background: white; 
-            padding: 20px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            height: fit-content; 
-            position: sticky; /* 关键：让目录吸附在屏幕上方 */
-            top: 20px; 
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        .sidebar h3 { margin-top: 0; color: #3498db; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .toc-link { 
-            display: block; 
-            padding: 10px; 
-            color: #555; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            margin-bottom: 5px; 
-            transition: 0.2s; 
-            font-size: 0.95em;
-        }
-        .toc-link:hover { background-color: #eaf2f8; color: #3498db; }
-        .toc-link.active { background-color: #3498db; color: white; }
-
-        /* 右侧试卷内容区 */
-        .content { flex: 1; min-width: 0; } /* min-width 防止内容撑爆布局 */
         
-        /* 试卷卡片样式 */
-        .exam-section { 
-            background: white; 
-            padding: 30px; 
-            margin-bottom: 30px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
-            scroll-margin-top: 20px; /* 点击跳转时留出顶部空隙 */
-        }
-        .exam-section h2 { 
-            color: #2c3e50; 
-            border-left: 5px solid #3498db; 
-            padding-left: 15px; 
-            margin-top: 0;
-        }
+        .layout { display: flex; max-width: 1200px; margin: 20px auto; gap: 30px; padding: 0 20px; }
+        
+        /* 侧边栏样式升级 */
+        .sidebar { width: 300px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); height: 85vh; position: sticky; top: 20px; overflow-y: auto; }
+        .sidebar h3 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        
+        /* 目录中的大章节标题 */
+        .chapter-label { font-weight: bold; color: #3498db; margin-top: 15px; margin-bottom: 5px; padding-left: 5px; font-size: 1.05em; }
+        
+        /* 目录中的试卷链接 */
+        .toc-link { display: block; padding: 8px 15px; color: #666; text-decoration: none; border-radius: 5px; transition: 0.2s; font-size: 0.9em; border-left: 3px solid transparent; }
+        .toc-link:hover { background-color: #eaf2f8; color: #3498db; border-left: 3px solid #3498db; }
 
-        /* 题目样式 */
+        .content { flex: 1; min-width: 0; }
+        
+        /* 内容区的章节分割线 */
+        .chapter-divider { margin-top: 40px; margin-bottom: 20px; border-bottom: 2px dashed #bdc3c7; padding-bottom: 10px; }
+        .chapter-divider h2 { color: #7f8c8d; margin: 0; }
+
+        .exam-section { background: white; padding: 30px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); scroll-margin-top: 20px; }
+        .exam-section h2 { color: #2c3e50; border-left: 5px solid #3498db; padding-left: 15px; margin-top: 0; }
+        
         .question-box { background-color: #f9f9f9; border: 1px solid #eee; padding: 15px; margin-bottom: 15px; border-radius: 6px; }
         details { margin-top: 10px; }
-        summary { cursor: pointer; color: #e67e22; font-weight: bold; user-select: none; }
+        summary { cursor: pointer; color: #e67e22; font-weight: bold; }
         .answer { margin-top: 10px; padding: 15px; background-color: #e8f8f5; border-left: 4px solid #2ecc71; }
         .teacher-note { margin-top: 10px; font-size: 0.9em; background: #fff8e1; padding: 10px; border-radius: 4px; color: #8a6d3b; }
 
-        /* 手机端适配 */
-        @media (max-width: 768px) {
-            .layout { flex-direction: column; }
-            .sidebar { width: auto; position: static; max-height: none; }
-        }
+        @media (max-width: 768px) { .layout { flex-direction: column; } .sidebar { width: auto; height: auto; position: static; } }
     </style>
 </head>
 <body>
 
-<!-- 顶部 -->
 <div class="header">
-    <h1>高等量子力学通关题库</h1>
+    <h1>高等量子力学通关宝典</h1>
     <p>Theory of Density Matrix & Quantum Dynamics</p>
 </div>
 
-<!-- 主布局 -->
 <div class="layout">
-    
-    <!-- 左侧：自动生成的目录 -->
+    <!-- 左侧目录 -->
     <div class="sidebar">
-        <h3>📚 章节目录</h3>
-        <div id="toc-container">
-            <!-- JavaScript 会在这里插入链接 -->
-        </div>
+        <h3>📚 课程目录</h3>
+        <div id="toc-container"></div>
     </div>
 
-    <!-- 右侧：自动生成的试卷 -->
-    <div class="content" id="exam-container">
-        <!-- JavaScript 会在这里插入题目 -->
-    </div>
-
+    <!-- 右侧内容 -->
+    <div class="content" id="exam-container"></div>
 </div>
 
-<!-- 引入数据 -->
 <script src="questions.js"></script>
-
-<!-- 核心逻辑 -->
 <script>
     const tocContainer = document.getElementById('toc-container');
     const examContainer = document.getElementById('exam-container');
 
-    // 检查是否有数据
-    if (typeof examData === 'undefined') {
-        examContainer.innerHTML = '<p style="color:red; padding:20px;">错误：未找到 questions.js 文件，请确保两个文件在同一目录下。</p>';
+    if (typeof courseData === 'undefined') {
+        examContainer.innerHTML = '<p style="color:red;">错误：请确保 questions.js 文件存在且格式正确。</p>';
     } else {
-        // 遍历数据，同时生成“目录”和“试卷”
-        examData.forEach((exam, index) => {
-            const examId = `exam-${index}`; // 给每个章节一个身份证号
+        // 双重循环：第一层循环“章”，第二层循环“试卷”
+        courseData.forEach((chapter, cIndex) => {
+            
+            // 1. 在左侧目录添加“章节标题”
+            const chapterLabel = document.createElement('div');
+            chapterLabel.className = 'chapter-label';
+            chapterLabel.innerText = chapter.chapterTitle;
+            tocContainer.appendChild(chapterLabel);
 
-            // --- 1. 生成左侧目录链接 ---
-            const link = document.createElement('a');
-            link.className = 'toc-link';
-            link.href = `#${examId}`; // 点击跳转到对应ID
-            link.innerHTML = `<strong>第 ${index + 1} 章</strong><br>${exam.title.split('：')[1] || exam.title}`;
-            tocContainer.appendChild(link);
+            // 2. 在右侧内容区添加一个“章节分割标题”（可选，增加美观）
+            const chapterDivider = document.createElement('div');
+            chapterDivider.className = 'chapter-divider';
+            chapterDivider.innerHTML = `<h2>${chapter.chapterTitle}</h2>`;
+            examContainer.appendChild(chapterDivider);
 
-            // --- 2. 生成右侧试卷区块 ---
-            const section = document.createElement('div');
-            section.className = 'exam-section';
-            section.id = examId; // 贴上身份证号，方便跳转
+            // 3. 遍历该章节下的所有试卷
+            chapter.exams.forEach((exam, eIndex) => {
+                const examId = `exam-${cIndex}-${eIndex}`; // 生成唯一ID
 
-            // 标题
-            const h2 = document.createElement('h2');
-            h2.textContent = exam.title;
-            section.appendChild(h2);
+                // --- 目录链接 ---
+                const link = document.createElement('a');
+                link.className = 'toc-link';
+                link.href = `#${examId}`;
+                link.innerText = exam.title; // 只显示试卷标题
+                tocContainer.appendChild(link);
 
-            // 题目循环
-            exam.questions.forEach((q, qIndex) => {
-                const box = document.createElement('div');
-                box.className = 'question-box';
-                box.innerHTML = `
-                    <p><strong>Q${qIndex + 1}:</strong> ${q.q}</p>
-                    <details>
-                        <summary>查看答案</summary>
-                        <div class="answer">
-                            <p><strong>${q.a}</strong></p>
-                            <p>${q.detail}</p>
-                            <div class="teacher-note">
-                                💡 <strong>胡老师点评：</strong> ${q.note}
+                // --- 试卷内容卡片 ---
+                const section = document.createElement('div');
+                section.className = 'exam-section';
+                section.id = examId;
+
+                // 试卷标题
+                const h2 = document.createElement('h2');
+                h2.innerText = exam.title;
+                section.appendChild(h2);
+
+                // 题目循环
+                exam.questions.forEach((q, qIndex) => {
+                    const box = document.createElement('div');
+                    box.className = 'question-box';
+                    box.innerHTML = `
+                        <p><strong>Q${qIndex + 1}:</strong> ${q.q}</p>
+                        <details>
+                            <summary>查看答案</summary>
+                            <div class="answer">
+                                <p><strong>${q.a}</strong></p>
+                                <p>${q.detail}</p>
+                                <div class="teacher-note">
+                                    💡 <strong>胡老师点评：</strong> ${q.note}
+                                </div>
                             </div>
-                        </div>
-                    </details>
-                `;
-                section.appendChild(box);
-            });
+                        </details>
+                    `;
+                    section.appendChild(box);
+                });
 
-            examContainer.appendChild(section);
+                examContainer.appendChild(section);
+            });
         });
     }
 </script>
