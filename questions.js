@@ -135,7 +135,7 @@ const courseData = [
                     }
                 ]
             },
-{
+            {
                 title: "Part5",
                 questions: [
                     {
