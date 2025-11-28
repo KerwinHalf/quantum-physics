@@ -1,7 +1,19 @@
 // 高等量子力学题库-Kerwin's
 const courseData = [
     {
-        chapterTitle: "第一章：Density Matrix (密度矩阵)",
+        chapterTitle: "Kerwin",
+        exams:[
+                {
+                title: "Quantum Zeno Effect",
+                questions: [
+                    {
+                        q: "为什么人不能从坐着的我突然变成站着的我？",
+                        a: "环境在时刻监视你,频率高达10的20次方,而量子芝诺效应告诉我们:如果你频繁地盯着一个量子系统看,它就动不了了",
+                    }
+                            ]
+                }
+            ],
+        chapterTitle: "Density Matrix (密度矩阵)",
         exams: [
             {
                 title: "Part1",
