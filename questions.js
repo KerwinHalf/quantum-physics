@@ -4,7 +4,7 @@ const courseData = [
         chapterTitle: "第一章：Density Matrix (密度矩阵)",
         exams: [
             {
-                title: "第一套卷：基础巩固",
+                title: "第一套卷",
                 questions: [
                     {
                         q: "1. 【概念辨析】关于纯态与混态：一个处于混态的系统（例如 50% $|1\\rangle$ 和 50% $|2\\rangle$），如果我们站在一个非常巧妙的观测角度（选择一个特殊的基底），是有可能把它看成一个纯态的。",
@@ -45,7 +45,7 @@ const courseData = [
                 ]
             },
             {
-                title: "第二套卷：进阶动力学",
+                title: "第二套卷",
                 questions: [
                     {
                         q: "1. 【判断题：演化的纯度】一个孤立系统（Hamiltonian 为 $H$），如果在 $t=0$ 时刻处于一个混态（例如 $\\rho(0) = 0.8|1\\rangle\\langle 1| + 0.2|2\\rangle\\langle 2|$）。<br>经过一段时间演化后，有没有可能因为 $H$ 的作用，让它变成一个纯态？",
@@ -74,7 +74,7 @@ const courseData = [
                 ]
             },
             {
-                title: "第三套卷：高阶计算",
+                title: "第三套卷",
                 questions: [
                     {
                         q: "1. 【概念辨析：混合的多义性】<br>情景 A：50% $|0\\rangle$ 和 50% $|1\\rangle$。<br>情景 B：50% $|+\\rangle_x$ 和 50% $|-\\rangle_x$。<br>作为一个观测者，拿到这个盒子后，你能通过实验区分出它是情景 A 还是情景 B 吗？",
@@ -97,7 +97,7 @@ const courseData = [
                 ]
             },
             {
-                title: "第四套卷：熵与测量",
+                title: "第四套卷",
                 questions: [
                     {
                         q: "1. 【计算题：冯·诺依曼熵】量子熵定义为 $S = -\\text{Tr}(\\rho \\ln \\rho)$。<br>请分别计算纯态 $\\rho_1 = |1\\rangle\\langle 1|$ 和完全混态 $\\rho_2 = 0.5(|0\\rangle\\langle 0| + |1\\rangle\\langle 1|)$ 的熵。",
@@ -122,7 +122,7 @@ const courseData = [
         ]
     },
     {
-        chapterTitle: "第二章：（预习）",
+        chapterTitle: "第二章:......",
         exams: 
 	[
             {
