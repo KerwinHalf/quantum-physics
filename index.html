@@ -3,160 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高等量子力学 - 胡老师通关题库（全集）</title>
-    <!-- 引入 MathJax 用于显示数学公式 -->
+    <title>高等量子力学 - 智能题库</title>
+    <!-- 引入 MathJax -->
     <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      }
-    };
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
+        /* 保持原本漂亮的样式 */
         body { font-family: "Segoe UI", Arial, sans-serif; line-height: 1.6; color: #333; background-color: #f0f2f5; margin: 0; padding: 20px; }
         .container { max-width: 900px; margin: 0 auto; background: #fff; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 10px; }
         h1 { text-align: center; color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 15px; }
-        .intro { text-align: center; color: #7f8c8d; font-style: italic; margin-bottom: 40px; }
         h2 { background-color: #3498db; color: white; padding: 10px 15px; border-radius: 5px; margin-top: 40px; }
-        h3 { color: #16a085; border-left: 4px solid #16a085; padding-left: 10px; margin-top: 30px; }
         .question-box { background-color: #f8f9fa; border: 1px solid #e9ecef; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
         details { margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 10px; }
-        summary { cursor: pointer; color: #e67e22; font-weight: bold; font-size: 1.1em; }
-        summary:hover { color: #d35400; }
-        .answer { margin-top: 15px; padding: 15px; background-color: #e8f8f5; border-left: 5px solid #2ecc71; border-radius: 4px; }
-        .teacher-note { margin-top: 10px; font-size: 0.95em; color: #555; background: #fff3cd; padding: 10px; border: 1px solid #ffeeba; border-radius: 4px; }
-        .teacher-note strong { color: #b7791f; }
-        footer { text-align: center; margin-top: 50px; color: #aaa; border-top: 1px solid #eee; padding-top: 20px; }
+        summary { cursor: pointer; color: #e67e22; font-weight: bold; }
+        .answer { margin-top: 15px; padding: 15px; background-color: #e8f8f5; border-left: 5px solid #2ecc71; }
+        .teacher-note { margin-top: 10px; font-size: 0.95em; color: #555; background: #fff3cd; padding: 10px; border-radius: 4px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>高等量子力学：通关试卷全集</h1>
-    <p class="intro">整理自胡勇教授授课内容 | 涵盖：相互作用绘景、密度矩阵、纠缠与约化</p>
-
-    <!-- 试卷一 -->
-    <h2>试卷一：基础概念与模型建立</h2>
-    
-    <h3>一、概念辨析</h3>
-    <div class="question-box">
-        <p><strong>1. 关于纯态与混态：</strong> 一个处于混态的系统（例如 50% $|1\rangle$ 和 50% $|2\rangle$），如果我们站在一个非常巧妙的观测角度（选择一个特殊的基底），是有可能把它看成一个纯态的。</p>
-        <details>
-            <summary>点击查看答案与解析</summary>
-            <div class="answer">
-                <p><strong>判断：错</strong></p>
-                <p><strong>理由：</strong>混态的本质是信息的缺失（熵 > 0）。数学上，幺正变换（改变基底）不改变矩阵的迹和纯度 $\text{Tr}(\rho^2)$。物理上，“两根独立的棍子”永远变不成“一根棍子”。</p>
-            </div>
-        </details>
+    <h1>高等量子力学：胡老师智能题库</h1>
+    <div id="exam-container">
+        <!-- 这里的题目会由 JavaScript 自动生成 -->
     </div>
-
-    <div class="question-box">
-        <p><strong>2. 关于旋波近似 (RWA)：</strong> 在推导 Rabi 振荡时，扔掉反旋项 $e^{i(\Omega+\omega)t}$ 是因为这一项违反了能量守恒定律，物理上绝对不允许发生。</p>
-        <details>
-            <summary>点击查看答案与解析</summary>
-            <div class="answer">
-                <p><strong>判断：错（或不严谨）</strong></p>
-                <p><strong>理由：</strong>真正的原因是它是“快变项”。在积分演化过程中，正负快速抵消，平均效果为零，对长时间的累积演化没有实质贡献。量子力学允许短时间的能量不守恒（不确定性原理）。</p>
-            </div>
-        </details>
-    </div>
-
-    <h3>二、计算题</h3>
-    <div class="question-box">
-        <p><strong>3. 相互作用绘景：</strong> 已知 $H_0 = \frac{\hbar\Omega}{2}\sigma_z$，微扰 $V = g(\sigma_+ + \sigma_-)(e^{-i\omega t} + e^{i\omega t})$。请写出旋波近似后的有效哈密顿量。</p>
-        <details>
-            <summary>点击查看答案与解析</summary>
-            <div class="answer">
-                <p><strong>答案：</strong></p>
-                <p>$$ V^I_{RWA} = g \left( \sigma_+ e^{i(\Omega-\omega)t} + \sigma_- e^{-i(\Omega-\omega)t} \right) $$</p>
-                <div class="teacher-note">
-                    <strong>胡老师点评：</strong> 
-                    只保留“频率相减”的项（慢变项）。<br>
-                    $\sigma_+ e^{-i\omega t}$：原子吸收能量，光场减少能量（合理）。<br>
-                    $\sigma_- e^{i\omega t}$：原子释放能量，光场增加能量（合理）。
-                </div>
-            </div>
-        </details>
-    </div>
-
-    <!-- 试卷二 -->
-    <h2>试卷二：动力学与约化计算</h2>
-
-    <h3>一、自旋动力学</h3>
-    <div class="question-box">
-        <p><strong>1. 自旋进动：</strong> 电子处于 $H = \frac{\hbar\Omega}{2}\sigma_z$ 场中，初始状态为 $|+\rangle_x$（赤道方向）。求 $t$ 时刻密度矩阵的非对角元，并说明物理意义。</p>
-        <details>
-            <summary>点击查看答案与解析</summary>
-            <div class="answer">
-                <p><strong>答案：</strong> $\rho_{12}(t) = 0.5 e^{-i\Omega t}$</p>
-                <p><strong>完整矩阵：</strong> $$ \rho(t) = \begin{pmatrix} 0.5 & 0.5 e^{-i\Omega t} \\ 0.5 e^{i\Omega t} & 0.5 \end{pmatrix} $$</p>
-                <div class="teacher-note">
-                    <strong>胡老师点评：</strong> 
-                    对角元（高度）不变，非对角元（相位）在转圈。
-                    这对应“棍子”在赤道面上绕 Z 轴做 Larmor 进动。
-                </div>
-            </div>
-        </details>
-    </div>
-
-    <h3>二、约化密度矩阵</h3>
-    <div class="question-box">
-        <p><strong>2. 非均匀纠缠求偏迹：</strong> 两个量子比特处于 $|\Psi\rangle = \sqrt{0.75}|\uparrow\uparrow\rangle + \sqrt{0.25}|\downarrow\downarrow\rangle$。求粒子 A 的约化密度矩阵 $\rho_A$。</p>
-        <details>
-            <summary>点击查看答案与解析</summary>
-            <div class="answer">
-                <p><strong>答案：</strong></p>
-                <p>$$ \rho_A = \begin{pmatrix} 0.75 & 0 \\ 0 & 0.25 \end{pmatrix} $$</p>
-                <p><strong>纯度：</strong> $\text{Tr}(\rho_A^2) = 0.75^2 + 0.25^2 = 0.625 < 1$（混态）。</p>
-                <div class="teacher-note">
-                    <strong>胡老师点评：</strong> 
-                    求迹时，交叉项因为粒子 B 的正交性（$\langle\uparrow|\downarrow\rangle=0$）被消除了。结论：纠缠态的局部一定是混态。
-                </div>
-            </div>
-        </details>
-    </div>
-
-    <!-- 试卷三 -->
-    <h2>试卷三：大师级验证（热力学与关联本质）</h2>
-
-    <div class="question-box">
-        <p><strong>1. 热力学极限：</strong> 对于二能级系统，当温度 $T \to \infty$ 时，热平衡态密度矩阵 $\rho_{th}$ 会变成什么样？</p>
-        <details>
-            <summary>点击查看答案与解析</summary>
-            <div class="answer">
-                <p><strong>答案：完全混态</strong></p>
-                <p>$$ \rho \to \begin{pmatrix} 0.5 & 0 \\ 0 & 0.5 \end{pmatrix} $$</p>
-                <div class="teacher-note">
-                    <strong>胡老师点评：</strong> 
-                    高温导致无序。玻尔兹曼因子 $e^{-E/kT} \to 1$，所有能级概率均等，系统处于熵最大的状态。
-                </div>
-            </div>
-        </details>
-    </div>
-
-    <div class="question-box">
-        <p><strong>2. 经典关联 vs 量子纠缠（压轴题）：</strong></p>
-        <p>系统 A（经典）：$\rho_{class} = 0.5|01\rangle\langle 01| + 0.5|10\rangle\langle 10|$</p>
-        <p>系统 B（纠缠）：$\rho_{quant} = |\Psi_{Bell}\rangle\langle\Psi_{Bell}|$</p>
-        <p>分别计算关联测量值 $\langle \sigma_x \otimes \sigma_x \rangle$。</p>
-        <details>
-            <summary>点击查看答案与解析</summary>
-            <div class="answer">
-                <p><strong>经典关联：</strong> 结果为 <strong>0</strong>。<br>（矩阵只有对角元，与反对角的测量算符乘积为 0）。</p>
-                <p><strong>量子纠缠：</strong> 结果为 <strong>1</strong>。<br>（矩阵有非对角项 0.5，与测量算符的 1 相乘，贡献了关联）。</p>
-                <div class="teacher-note">
-                    <strong>胡老师点评：</strong> 
-                    这是区分经典与量子的试金石。经典关联只有“纵向”（Z轴）的相关性，而量子纠缠拥有“全方位”的相关性，特别是在 X 方向（相干项）上表现出强关联。
-                </div>
-            </div>
-        </details>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Quantum Physics Exam Collection | Powered by Hu Yong's Class</p>
+    <footer style="text-align:center; margin-top:50px; color:#aaa;">
+        Powered by JS Data Structure
     </footer>
 </div>
+
+<!-- 引入你的题目数据 -->
+<script src="questions.js"></script>
+
+<!-- 自动生成页面的逻辑 -->
+<script>
+    const container = document.getElementById('exam-container');
+
+    // 遍历每一张试卷
+    examData.forEach(exam => {
+        // 创建试卷标题
+        const h2 = document.createElement('h2');
+        h2.textContent = exam.title;
+        container.appendChild(h2);
+
+        // 遍历试卷里的每一道题
+        exam.questions.forEach((q, index) => {
+            const box = document.createElement('div');
+            box.className = 'question-box';
+            
+            // 生成 HTML 结构
+            box.innerHTML = `
+                <p><strong>第 ${index + 1} 题：</strong> ${q.q}</p>
+                <details>
+                    <summary>点击查看答案与解析</summary>
+                    <div class="answer">
+                        <p><strong>${q.a}</strong></p>
+                        <p>${q.detail}</p>
+                        <div class="teacher-note">
+                            <strong>胡老师点评：</strong> ${q.note}
+                        </div>
+                    </div>
+                </details>
+            `;
+            container.appendChild(box);
+        });
+    });
+</script>
 
 </body>
 </html>
