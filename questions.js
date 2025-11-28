@@ -12,7 +12,8 @@ const courseData = [
                     }
                             ]
                 }
-            ],
+            ]
+    }
         chapterTitle: "Density Matrix (密度矩阵)",
         exams: [
             {
