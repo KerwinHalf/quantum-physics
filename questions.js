@@ -4,7 +4,7 @@ const courseData = [
         chapterTitle: "第一章：Density Matrix (密度矩阵)",
         exams: [
             {
-                title: "第一套卷",
+                title: "Part1",
                 questions: [
                     {
                         q: "1. 【概念辨析】关于纯态与混态：一个处于混态的系统（例如 50% $|1\\rangle$ 和 50% $|2\\rangle$），如果我们站在一个非常巧妙的观测角度（选择一个特殊的基底），是有可能把它看成一个纯态的。",
@@ -45,7 +45,7 @@ const courseData = [
                 ]
             },
             {
-                title: "第二套卷",
+                title: "Part2",
                 questions: [
                     {
                         q: "1. 【判断题：演化的纯度】一个孤立系统（Hamiltonian 为 $H$），如果在 $t=0$ 时刻处于一个混态（例如 $\\rho(0) = 0.8|1\\rangle\\langle 1| + 0.2|2\\rangle\\langle 2|$）。<br>经过一段时间演化后，有没有可能因为 $H$ 的作用，让它变成一个纯态？",
@@ -74,7 +74,7 @@ const courseData = [
                 ]
             },
             {
-                title: "第三套卷",
+                title: "Part3",
                 questions: [
                     {
                         q: "1. 【概念辨析：混合的多义性】<br>情景 A：50% $|0\\rangle$ 和 50% $|1\\rangle$。<br>情景 B：50% $|+\\rangle_x$ 和 50% $|-\\rangle_x$。<br>作为一个观测者，拿到这个盒子后，你能通过实验区分出它是情景 A 还是情景 B 吗？",
@@ -97,7 +97,7 @@ const courseData = [
                 ]
             },
             {
-                title: "第四套卷",
+                title: "Part4",
                 questions: [
                     {
                         q: "1. 【计算题：冯·诺依曼熵】量子熵定义为 $S = -\\text{Tr}(\\rho \\ln \\rho)$。<br>请分别计算纯态 $\\rho_1 = |1\\rangle\\langle 1|$ 和完全混态 $\\rho_2 = 0.5(|0\\rangle\\langle 0| + |1\\rangle\\langle 1|)$ 的熵。",
@@ -116,6 +116,29 @@ const courseData = [
                         a: "答案：变成混态 $\\rho' = \\begin{pmatrix} 0.5 & 0 \\\\ 0 & 0.5 \\end{pmatrix}$，纯度从 1 降为 0.5",
                         detail: "<strong>过程解析：</strong><br>1. 初始矩阵 $\\rho_{in} = \\begin{pmatrix} 0.5 & 0.5 \\\\ 0.5 & 0.5 \\end{pmatrix}$（纯态，有相干）。<br>2. 测量 $\\sigma_z$ 会强行抹去非对角项（投影测量导致退相干）。<br>3. 结果变成对角矩阵 $\\text{diag}(0.5, 0.5)$。",
                         note: "这就是所谓的“波函数坍缩”在密度矩阵语言里的描述——非对角项（相干性）的瞬间消失。"
+                    }
+                ]
+            },
+{
+                title: "Part5",
+                questions: [
+                    {
+                        q: "1. 【物理图像：薛定谔的猫】<br>一只猫处于“死活叠加态” $|\\psi\\rangle = \\frac{1}{\\sqrt{2}}(|\\text{活}\\rangle + |\\text{死}\\rangle)$。它的密度矩阵有非对角项（相干项）。<br>但是在宏观世界，我们从未见过这种叠加。请用密度矩阵的语言解释，<strong>为什么相干项消失了？</strong>",
+                        a: "答案：因为与环境发生了纠缠（退相干）。",
+                        detail: "<strong>解析：</strong><br>猫不是孤立的，它时刻在和空气分子、光子相互作用（纠缠）。<br>$\\rho_{cat} = \\text{Tr}_{env}(|\\Psi_{total}\\rangle\\langle\\Psi_{total}|)$。<br>环境的正交性极强（空气分子撞一下状态就变了），导致 $\\langle E_1 | E_2 \\rangle \\approx 0$。求偏迹后，非对角项迅速衰减为 0，猫变成了只有对角项的混态（要么死，要么活）。",
+                        note: "不是猫不想叠加，是环境‘偷’走了它的相位信息。"
+                    },
+                    {
+                        q: "2. 【计算题：相位阻尼 (Phase Damping)】<br>考虑一个量子比特，其布居数 $\\rho_{00}, \\rho_{11}$ 保持不变（能量守恒），但非对角项随时间指数衰减：$\\rho_{01}(t) = \\rho_{01}(0) e^{-\\gamma t}$。<br>请问：当 $t \\to \\infty$ 时，系统的纯度 $\\text{Tr}(\\rho^2)$ 是多少？（假设初始为叠加态 $|+\\rangle$）",
+                        a: "答案：纯度趋于 0.5",
+                        detail: "<strong>推导：</strong><br>1. 初始 $|+\\rangle$ 对应 $\\rho(0) = \\begin{pmatrix} 0.5 & 0.5 \\\\ 0.5 & 0.5 \\end{pmatrix}$。<br>2. 演化后 $\\rho(t) = \\begin{pmatrix} 0.5 & 0.5e^{-\\gamma t} \\\\ 0.5e^{-\\gamma t} & 0.5 \\end{pmatrix}$。<br>3. 当 $t \\to \\infty$，非对角项为 0。$\\rho \\to \\text{diag}(0.5, 0.5)$。<br>4. $\\text{Tr}(\\rho^2) = 0.5^2 + 0.5^2 = 0.5$。",
+                        note: "这就叫‘退相干’。虽然能量没损失，但量子特性（纯度）丢光了，变成了经典概率分布。"
+                    },
+                    {
+                        q: "3. 【几何直觉：布洛赫球的萎缩】<br>如果用布洛赫矢量 $\\vec{r}$ 来表示密度矩阵 $\\rho = \\frac{1}{2}(I + \\vec{r}\\cdot\\vec{\\sigma})$。<br>在上一题的“相位阻尼”过程中，布洛赫矢量 $\\vec{r}$ 的长度 $|\\vec{r}|$ 是怎么变化的？",
+                        a: "答案：长度变短，从球面缩向 z 轴",
+                        detail: "<strong>解析：</strong><br>1. $\\rho_{00}, \\rho_{11}$ 不变 $\\to$ $z$ 分量不变（高度不变）。<br>2. $\\rho_{01}$ 衰减 $\\to$ $x, y$ 分量衰减（半径变小）。<br>3. 物理图像：原本指在赤道上的箭头，慢慢缩短，最后变成了球心（或者 z 轴上的一点）。",
+                        note: "纯态在球面上，混态在球里面。退相干就是把这一层皮剥掉，把你往球心里按。"
                     }
                 ]
             }
