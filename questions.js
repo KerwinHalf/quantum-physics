@@ -161,7 +161,7 @@ const courseData = [
         ]
     },
     {
-        chapterTitle: "Bloch sphere vineyards of spin 1/2 particles with spin echoes",
+        chapterTitle: "Bloch sphere vineyards of spin 1/2 particles with spin echoes（自旋1/2粒子与自旋回波）",
         exams: [
             {
                 title: "Part1",
