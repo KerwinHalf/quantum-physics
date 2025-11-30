@@ -2,8 +2,8 @@
 const courseData = [
     {
         chapterTitle: "Kerwin",
-        exams:[
-                {
+        exams: [
+            {
                 title: "Quantum Zeno Effect",
                 questions: [
                     {
@@ -12,9 +12,9 @@ const courseData = [
                         detail: "<strong>解析：</strong><br>1. 环境（光子、空气）对宏观物体的观测频率高达 $10^{20}$ Hz。<br>2. <strong>量子芝诺效应</strong>告诉我们：如果你频繁地盯着一个量子系统看，它的演化就会被冻结。<br>3. 环境的高频测量把你死死地“锁”在当前的经典轨迹上，禁止了大幅度的量子隧穿。",
                         note: "被环境“看”得死死的，动弹不得。"
                     }
-                            ]
-                }
-            ]
+                ]
+            }
+        ]
     },
     {
         chapterTitle: "Density Matrix (密度矩阵)",
@@ -161,18 +161,40 @@ const courseData = [
         ]
     },
     {
-        chapterTitle: "第二章:......",
-        exams: 
-	[
+        chapterTitle: "Bloch sphere vineyards of spin 1/2 particles with spin echoes",
+        exams: [
             {
-                title: "待更新...",
-                questions: 
-		[
+                title: "Part1",
+                questions: [
                     {
-                        q: "本章内容即将更新...",
-                        a: "敬请期待",
-                        detail: "正在解锁新关卡......",
-                        note: "加油！"
+                        q: "1. 【判断题】如果一个量子态对应的 Bloch 矢量 \\mathbf{n} 的长度 |\\mathbf{n}| < 1，说明这个粒子“消失”了一部分物质。",
+                        a: "错 (False)",
+                        detail: "<strong>解析：</strong>错。Bloch 矢量的长度代表量子态的<strong>相干性</strong>（或纯度）。<br>|\\mathbf{n}| < 1 说明体系处于<strong>混态</strong>（Mixed State），这是由于环境噪声导致的信息丢失（退相干），而不是粒子本身的质量或能量丢失。<br>只有 |\\mathbf{n}| = 1 时才是纯态。",
+                        note: "：想啥呢？粒子要是丢了，那叫核反应或者高能物理，不叫量子计算。"
+                    },
+                    {
+                        q: "2. 【计算题】已知量子态 |\\psi\\rangle = \\frac{1}{\\sqrt{2}} (|\\uparrow\\rangle - |\\downarrow\\rangle)，请写出其对应的 Bloch 矢量 \\mathbf{n} = (n_x, n_y, n_z) 以及它在 Bloch 球上的位置。",
+                        a: "(-1, 0, 0)，指向 x 轴负方向",
+                        detail: "<strong>解析：</strong><br>1. 这是一个叠加态，处于 Bloch 球的赤道面上，所以 n_z = 0。<br>2. 计算投影：<br> n_x = \\langle \\psi | \\sigma_x | \\psi \\rangle = -1 （注意中间的减号导致相位差了 \\pi）<br> n_y = 0 （系数都是实数，没有虚部 i）<br>3. 结论：\\mathbf{n} 指向 x 轴负方向，长度为 1（纯态）。",
+                        note: "：看到中间是减号就要警觉！加号是指向 +x，减号就是指向 -x，这一脚直接把你踢到球的背面去了。"
+                    },
+                    {
+                        q: "3. 【概念题】在“孔雀开屏”（退相干）过程中，<strong>每一个单独粒子</strong>的 Bloch 矢量长度和<strong>系综平均</strong>后的 Bloch 矢量长度分别如何变化？",
+                        a: "单个不变，平均变短",
+                        detail: "<strong>解析：</strong><br><strong>微观上：</strong>每个粒子在特定时刻依然是纯态（只是相位 \\phi 随时间跑偏了），所以单个粒子的模长 |\\mathbf{n}j| = 1 保持不变。<br><strong>宏观上：</strong>系综平均 \\mathbf{n}{\\rho} = \\frac{1}{N}\\sum \\mathbf{n}j，由于各个粒子的方向各异（开屏），矢量叠加后互相抵消，导致平均矢量的长度变短（|\\mathbf{n}{\\rho}| < 1），体现为退相干。",
+                        note: "：这就是“微观不乱宏观乱”。你可以理解为一群没经过训练的士兵，每个人都站得很直（纯态），但是队伍排得歪七扭八（混态）。"
+                    },
+                    {
+                        q: "4. 【推导题】如果在 t/2 时刻施加一个沿 <strong>X轴</strong> 的 \\pi 脉冲。假设施加前某粒子的 Bloch 矢量指向 Y 轴正方向 (0, 1, 0)，施加后它变成了什么？",
+                        a: "(0, -1, 0)",
+                        detail: "<strong>解析：</strong><br>记住几何图像口诀：<strong>绕谁转，谁不动；其他的，变反面。</strong><br>1. 脉冲沿 X 轴，所以旋转轴是 X 轴。<br>2. 旋转角度是 \\pi (180度)，即做镜像翻转。<br>3. X 分量不变。<br>4. Y 分量翻转：1 -> -1。<br>结果为 (0, -1, 0)。",
+                        note: "：就像烤羊肉串，签子是 X 轴。你翻面的时候，肉（Y分量）肯定从上面跑到下面去了，但这肉还在签子上穿得好好的。"
+                    },
+                    {
+                        q: "5. 【应用题】自旋回波（Spin Echo）技术能够成功恢复相干性的<strong>前提条件</strong>是什么？",
+                        a: "噪声必须是准静态的（低频噪声）",
+                        detail: "<strong>解析：</strong><br>自旋回波利用了时间反演的对称性：前半程跑出去的相位，要靠后半程以<strong>同样的速度</strong>追回来。<br>这要求 \\tau_{pulse} \\ll \\tau_{correlation} \\le \\tau_{interval}。<br>通俗地说，就是噪声在单次实验过程中必须保持不变（慢变），如果噪声是<strong>高频快变</strong>的，粒子在前后两段的速度不一样，就“追”不回来了。",
+                        note: "：这招只治“慢性病”。如果那个人变脸比翻书还快（高频噪声），你把他拉回来也没用，他早就不是刚才那个人了。"
                     }
                 ]
             }
