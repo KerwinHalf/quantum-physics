@@ -4,7 +4,7 @@ const courseData = [
         chapterTitle: "Kerwin",
         exams: [
             {
-                title: "Quantum Zeno Effect",
+                title: "Quantum Zeno Effect/量子芝诺效应",
                 questions: [
                     {
                         q: "为什么人不能从“坐着的我”突然变成“站着的我”？",
