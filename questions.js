@@ -224,7 +224,7 @@ const courseData = [
                         note: "记住，希尔伯特空间是指数爆炸的。两个电子看似简单，状态空间瞬间变成 $2 \\times 2 = 4$。几十个粒子在一起？哪怕是全宇宙的计算机也存不下那个波函数。这就是为什么多体物理难搞的原因。"
                     },
                     {
-                        q: "2. <strong>（必考计算题）</strong> 已知两量子比特处于著名的 Bell 态（最大纠缠态）：<br>$|\\Phi^+\\rangle_{AB} = \\frac{1}{\\sqrt{2}} (|0_A 0_B\\rangle + |1_A 1_B\\rangle)$。<br>请写出该系统的总密度矩阵 $\\rho_{AB}$，并计算 Alice 的约化密度矩阵 $\\rho_A = \\text{Tr}_B(\\rho_{AB})$。<br><strong>结果说明了什么物理现象？</strong>",
+                        q: "2. <strong>（计算题）</strong> 已知两量子比特处于著名的 Bell 态（最大纠缠态）：<br>$|\\Phi^+\\rangle_{AB} = \\frac{1}{\\sqrt{2}} (|0_A 0_B\\rangle + |1_A 1_B\\rangle)$。<br>请写出该系统的总密度矩阵 $\\rho_{AB}$，并计算 Alice 的约化密度矩阵 $\\rho_A = \\text{Tr}_B(\\rho_{AB})$。<br><strong>结果说明了什么物理现象？</strong>",
                         a: "$\\rho_A = \\frac{1}{2}(|0\\rangle\\langle 0| + |1\\rangle\\langle 1|) = \\frac{1}{2}\\hat{I}$。说明局部看是完全混合态（最大无知）。",
                         detail: "<strong>解析：</strong><br>1. 总密度矩阵（纯态）：<br>$\\rho_{AB} = |\\Phi^+\\rangle\\langle\\Phi^+| = \\frac{1}{2} (|00\\rangle\\langle 00| + |00\\rangle\\langle 11| + |11\\rangle\\langle 00| + |11\\rangle\\langle 11|)$。<br>2. 对 B 求部分迹（Partial Trace）：<br>我们要“抹去” B 的索引。$\\text{Tr}_B(|i_A j_B\\rangle\\langle k_A l_B|) = |i_A\\rangle\\langle k_A| \\cdot \\langle l_B | j_B \\rangle$。<br>只有当 $j=l$ 时（即 B 的态相同）这一项才留下来。所以交叉项 $|00\\rangle\\langle 11|$ 和 $|11\\rangle\\langle 00|$ 因为 $\\langle 1|0\\rangle=0$ 而直接消失！<br>3. 结果：$\\rho_A = \\frac{1}{2} |0\\rangle\\langle 0| + \\frac{1}{2} |1\\rangle\\langle 1|$。<br>这说明虽然整体是确定的纯态，但单独看 A，它却是最混乱的完全混合态。",
                         note: "这就是量子纠缠的诡异之处！整体拥有完全的信息（熵为0），但局部却一无所知（熵最大）。这叫“整体大于部分之和”。做人不要像纠缠态，要独立自主！"
