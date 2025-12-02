@@ -210,5 +210,50 @@ const courseData = [
                 ]
             }
         ]
+    },
+    {
+        chapterTitle: "von Neumann Entropy",
+        exams: [
+            {
+                title: "Part1",
+                questions: [
+                    {
+                        q: "1. 假设 Alice 在 $N$ 维希尔伯特空间 $\\mathcal{H}_A$，Bob 在 $M$ 维希尔伯特空间 $\\mathcal{H}_B$。他们的复合系统 $\\mathcal{H}_{AB}$ 的维数是多少？<br>如果 Alice 有一个算符 $\\hat{A}$，Bob 啥也不干（单位算符 $\\hat{I}$），那么在复合空间中，Alice 的操作该怎么写？",
+                        a: "维数是 $N \\times M$（不是 $N+M$！）。复合算符写作 $\\hat{A} \\otimes \\hat{I}$。",
+                        detail: "<strong>解析：</strong><br>量子力学的状态空间合并遵循“张量积”（Tensor Product）原则。如果你以为维数是相加，那你一定还在用经典力学的思维（或者是在数弹珠）。<br>在复合空间中，如果算符只作用于子系统 A，那么它必须对子系统 B 保持“沉默”，即作用单位算符 $\\hat{I}$。数学表达就是 $\\hat{A} \\otimes \\hat{I}$。",
+                        note: "记住，希尔伯特空间是指数爆炸的。两个电子看似简单，状态空间瞬间变成 $2 \\times 2 = 4$。几十个粒子在一起？哪怕是全宇宙的计算机也存不下那个波函数。这就是为什么多体物理难搞的原因。"
+                    },
+                    {
+                        q: "2. <strong>（必考计算题）</strong> 已知两量子比特处于著名的 Bell 态（最大纠缠态）：<br>$|\\Phi^+\\rangle_{AB} = \\frac{1}{\\sqrt{2}} (|0_A 0_B\\rangle + |1_A 1_B\\rangle)$。<br>请写出该系统的总密度矩阵 $\\rho_{AB}$，并计算 Alice 的约化密度矩阵 $\\rho_A = \\text{Tr}_B(\\rho_{AB})$。<br><strong>结果说明了什么物理现象？</strong>",
+                        a: "$\\rho_A = \\frac{1}{2}(|0\\rangle\\langle 0| + |1\\rangle\\langle 1|) = \\frac{1}{2}\\hat{I}$。说明局部看是完全混合态（最大无知）。",
+                        detail: "<strong>解析：</strong><br>1. 总密度矩阵（纯态）：<br>$\\rho_{AB} = |\\Phi^+\\rangle\\langle\\Phi^+| = \\frac{1}{2} (|00\\rangle\\langle 00| + |00\\rangle\\langle 11| + |11\\rangle\\langle 00| + |11\\rangle\\langle 11|)$。<br>2. 对 B 求部分迹（Partial Trace）：<br>我们要“抹去” B 的索引。$\\text{Tr}_B(|i_A j_B\\rangle\\langle k_A l_B|) = |i_A\\rangle\\langle k_A| \\cdot \\langle l_B | j_B \\rangle$。<br>只有当 $j=l$ 时（即 B 的态相同）这一项才留下来。所以交叉项 $|00\\rangle\\langle 11|$ 和 $|11\\rangle\\langle 00|$ 因为 $\\langle 1|0\\rangle=0$ 而直接消失！<br>3. 结果：$\\rho_A = \\frac{1}{2} |0\\rangle\\langle 0| + \\frac{1}{2} |1\\rangle\\langle 1|$。<br>这说明虽然整体是确定的纯态，但单独看 A，它却是最混乱的完全混合态。",
+                        note: "这就是量子纠缠的诡异之处！整体拥有完全的信息（熵为0），但局部却一无所知（熵最大）。这叫“整体大于部分之和”。做人不要像纠缠态，要独立自主！"
+                    },
+                    {
+                        q: "3. 什么是 Schmidt 分解（Schmidt Decomposition）？<br>对于一个纯态 $|\\psi\\rangle_{AB}$，如果其 Schmidt 数（Schmidt Rank）等于 1，这意味着什么？如果大于 1，又意味着什么？",
+                        a: "Schmidt 数为 1 意味着是积态（无纠缠）；大于 1 意味着存在纠缠。",
+                        detail: "<strong>解析：</strong><br>任意复合纯态都可以分解为 $|\\psi\\rangle_{AB} = \\sum_i \\lambda_i |i_A\\rangle |i_B\\rangle$，其中 $\\lambda_i$ 是非负实数。<br>Schmidt 数就是非零 $\\lambda_i$ 的个数。<br>1. 如果只有一项（Rank=1），比如 $|\\psi\\rangle = |\\phi_A\\rangle \\otimes |\\phi_B\\rangle$，这就是积态，Alice 和 Bob 毫无瓜葛。<br>2. 如果有多项叠加（Rank>1），没法拆成两坨独立的波函数，这就是纠缠态。",
+                        note: "Schmidt 分解是判断纠缠的“照妖镜”。别整那些花里胡哨的系数，做个奇异值分解（SVD），有几个非零奇异值，就知有没有纠缠。数学是不会骗人的。"
+                    }
+                ]
+            },
+            {
+                title: "Part2",
+                questions: [
+                    {
+                        q: "1. 对于一个复合系统的纯态 $|\\psi\\rangle_{AB}$，我们如何定义它的“纠缠熵”（Entanglement Entropy）？<br>并证明：$S(\\rho_A) = S(\\rho_B)$。",
+                        a: "纠缠熵定义为约化密度矩阵的 von Neumann 熵 $S(\\rho_A) = -\\text{Tr}(\\rho_A \\ln \\rho_A)$。证明利用 Schmidt 分解。",
+                        detail: "<strong>解析：</strong><br>纠缠熵用来度量 A 和 B 纠缠得有多深。<br>利用 Schmidt 分解 $|\\psi\\rangle_{AB} = \\sum \\lambda_i |i_A\\rangle |i_B\\rangle$：<br>Alice 的约化密度矩阵是 $\\rho_A = \\sum \\lambda_i^2 |i_A\\rangle\\langle i_A|$。<br>Bob 的约化密度矩阵是 $\\rho_B = \\sum \\lambda_i^2 |i_B\\rangle\\langle i_B|$。<br>两者的谱（本征值 $\\lambda_i^2$）完全一模一样！<br>既然本征值一样，代入熵公式 $S = -\\sum p_i \\ln p_i$，结果当然一样。",
+                        note: "这告诉我们一个深刻的道理：在一个纯粹的二人世界（纯态）里，我对你的无知程度，等于你对我的无知程度。这就是量子世界的公平。"
+                    },
+                    {
+                        q: "2. <strong>（概念辨析）</strong> 某同学计算发现，总系统处于混合态 $\\rho_{AB}$ 时，子系统的熵 $S(\\rho_A)$ 小于总系统的熵 $S(\\rho_{AB})$。<br>李教授问：这是否违反了“部分不能大于整体”的直觉？在经典统计力学中可能发生吗？",
+                        a: "不违反。但在量子力学中，可能出现反常：$S(\\rho_A) > S(\\rho_{AB})$！该同学计算的是“正常”情况（经典关联），但如果是纠缠纯态，子系统熵可以大于总系统熵。",
+                        detail: "<strong>解析：</strong><br>经典力学中，Shannon 熵满足单调性：$H(X,Y) \\ge H(X)$。你把更多的随机变量加进来，不确定性只增不减。<br>但在量子力学中，这不一定成立！<br>看刚才的 Bell 态：总系统是纯态 $S(\\rho_{AB}) = 0$；子系统是完全混合态 $S(\\rho_A) = \\ln 2$。<br>这里 $S(\\rho_A) > S(\\rho_{AB})$！<br>这是量子纠缠的独有特征，意味着信息不是存在于 A 或 B 内部，而是完全存在于 A 和 B 的**关联**（Correlation）之中。",
+                        note: "要是你在经典概率论里算出 $H(X) > H(X,Y)$，你的数学老师会打你手板。但在量子力学里，这意味着你发现了纠缠！这就是量子熵最“反直觉”也最迷人的地方。"
+                    }
+                ]
+            }
+        ]
     }
 ];
