@@ -255,5 +255,24 @@ const courseData = [
                 ]
             }
         ]
+    },
+    {
+        chapterTitle: "Topology",
+        exams: [
+            {
+                title: "Part1",
+                questions: [
+                    {
+                        q: "考虑三维空间中的两条闭合曲线：$R_1(\\theta)$ 和 $R_2(\\phi)$，其中 $\\theta, \\phi \\in [0, 2\\pi]$。两曲线互不相交。\n请构造一个整数 $N[R_1, R_2]$，使得当 $R_1, R_2$ 不相扣（即拓扑分离）时 $N=0$，而当它们相扣（Linking）时 $N \\neq 0$ 且为整数。",
+
+                        a: "我们所求的整数 $N$ 被称为**高斯环绕数 (Gauss Linking Number)**，其积分表达式为：\n$$ N = \\frac{1}{4\\pi} \\oint_{R_1} \\oint_{R_2} \\frac{\\mathbf{r}_1 - \\mathbf{r}_2}{|\\mathbf{r}_1 - \\mathbf{r}_2|^3} \\cdot (d\\mathbf{r}_1 \\times d\\mathbf{r}_2) $$",
+
+                        detail: "我们可以借助**电磁学**的物理图像来推导这个公式，而不需要深奥的拓扑学知识：\n\n**1. 物理类比 (安培定律)**\n设想曲线 $R_1$ 是一条通有电流 $I$ 的导线。根据安培定律，磁场 $\\mathbf{B}$ 沿闭合路径 $R_2$ 的环流积分取决于 $R_2$ 环绕电流的次数：\n$$ \\oint_{R_2} \\mathbf{B} \\cdot d\\mathbf{r}_2 = \\mu_0 I \\times (\\text{环绕次数 } N) $$\n因此，我们可以定义 $N = \\frac{1}{\\mu_0 I} \\oint_{R_2} \\mathbf{B} \\cdot d\\mathbf{r}_2$。\n\n**2. 引入比奥-萨伐尔定律 (Biot-Savart Law)**\n电流 $R_1$ 在空间中任意一点 $\\mathbf{r}_2$ 处产生的磁场由比奥-萨伐尔定律给出：\n$$ \\mathbf{B}(\\mathbf{r}_2) = \\frac{\\mu_0 I}{4\\pi} \\oint_{R_1} \\frac{d\\mathbf{r}_1 \\times (\\mathbf{r}_2 - \\mathbf{r}_1)}{|\\mathbf{r}_2 - \\mathbf{r}_1|^3} $$\n\n**3. 组合得到最终公式**\n将 $\\mathbf{B}$ 的表达式代入 $N$ 的定义式中，利用向量混合积的轮换性质 $(\\mathbf{A} \\times \\mathbf{B}) \\cdot \\mathbf{C} = (\\mathbf{B} \\times \\mathbf{C}) \\cdot \\mathbf{A}$，整理后即可得到上述的双重线积分公式。",
+
+                        note: "1. **拓扑不变性**：你可以随意连续形变 $R_1$ 或 $R_2$（只要不剪断也不互相穿过），这个积分的值保持不变。这就是拓扑不变量的定义。\n2. **几何直观**：公式中的被积项其实对应着从一个曲线看另一个曲线所张开的**立体角 (Solid Angle)**。\n3. **量子力学应用**：在高等量子力学中，这个结构出现在 **Chern-Simons 理论**中，用于描述分数量子霍尔效应中的任意子 (Anyons) 统计性质。"
+                    }
+                ]
+            }
+        ]
     }
 ];
